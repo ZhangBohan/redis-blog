@@ -1,12 +1,12 @@
 <section class="post">
     <header class="post-header">
-        <h2 class="post-title">{{ post.title }}</h2>
+        <a href="{{ url_for('.detail', post_id=post.id) }}"><h2 class="post-title">{{ post.title }}</h2></a>
 
         <p class="post-meta">
             By <a href="#" class="post-author">伯函</a> under
             {% if post.tags %}
                 {% for tag in post.tags.split(',') %}
-                    <a class="post-category post-category-pure" href="{{ url_for('.tag_index', tag_str=tag) }}">{{ tag }}</a>
+                    <a class="post-category post-category-pure" href="{{ url_for('.tag_index', tag_str=tag.strip()) }}">{{ tag }}</a>
                 {% endfor %}
             {% endif %}
         </p>

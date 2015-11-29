@@ -1,7 +1,7 @@
 # A other blog
-A blog power with Flask and Redis
+A blog power by Flask and Redis
 
-## Dep
+## Dependencies
 
 - [Flask](https://github.com/mitsuhiko/flask)
 - [redis-py](https://github.com/andymccurdy/redis-py)

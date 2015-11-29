@@ -19,6 +19,7 @@ def tag_index(tag_str):
     post_ids = redis.smembers("post:post-tags:%s" % tag_str)
     post_ids = [int(post_id) for post_id in post_ids]
     post_ids.sort()
+    post_ids.reverse()
     for post_id in post_ids:
         post = redis.hgetall('post:%s' % post_id)
         posts.append(post)
@@ -48,7 +49,7 @@ def new():
     for tag in tags.split(','):
         pipe.sadd('post:post-tags:%s' % tag.strip(), post_id)
 
-    pipe.rpush('post:post-list', post_id)
+    pipe.lpush('post:post-list', post_id)
     pipe.execute()
     return redirect(url_for('.detail', post_id=post_id))
 
